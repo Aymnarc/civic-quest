@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Award, BookOpen, Check, ChevronRight, CircleHelp, Clock3, Flame, Footprints,
   Home, Leaf, Lightbulb, ListChecks, Menu, Medal, Recycle, RotateCcw,
@@ -103,14 +103,14 @@ function App() {
   return (
     <div className="app-shell">
       <aside className={`sidebar ${menuOpen ? 'open' : ''}`}>
-        <div className="brand"><div className="brand-mark"><Leaf size={21} /></div><div><strong>Civic Quest</strong><span>Learn. Play. Act.</span></div><button className="close-menu" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={19} /></button></div>
+        <div className="brand"><div className="brand-mark"><Leaf size={21} /></div><div><strong>Civic Quest</strong><span>AA College · Learn. Play. Act.</span></div><button className="close-menu" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={19} /></button></div>
         <nav aria-label="Main navigation">{navItems.map(({ id, label, icon: Icon }) => <button key={id} className={page === id ? 'nav-item active' : 'nav-item'} onClick={() => navigate(id)}><Icon size={19} /><span>{label}</span>{page === id && <span className="nav-dot" />}</button>)}</nav>
         <div className="sidebar-card"><Sparkles size={18} /><div><strong>Keep going!</strong><p>Every good choice makes a difference.</p></div></div>
         <div className="sidebar-footer"><div className="mini-avatar">CE</div><div><strong>Civic Explorer</strong><span>Level {level}</span></div><button className="profile-button" onClick={() => navigate('profile')} aria-label="View profile"><ChevronRight size={17} /></button></div>
       </aside>
       {menuOpen && <button className="sidebar-backdrop" onClick={() => setMenuOpen(false)} aria-label="Close navigation" />}
       <main className="main-content">
-        <header className="topbar"><button className="menu-button" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={22} /></button><div className="mobile-brand"><div className="brand-mark"><Leaf size={17} /></div><strong>Civic Quest</strong></div><div className="topbar-actions"><div className="points-pill"><Star size={16} fill="currentColor" /> {progress.points} <span>points</span></div><button className="avatar-button" onClick={() => navigate('profile')}>CE</button></div></header>
+        <header className="topbar"><button className="menu-button" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={22} /></button><div className="mobile-brand"><div className="brand-mark"><Leaf size={17} /></div><div><strong>Civic Quest</strong><span>AA College</span></div></div><div className="topbar-actions"><div className="points-pill"><Star size={16} fill="currentColor" /> {progress.points} <span>points</span></div><button className="avatar-button" onClick={() => navigate('profile')}>CE</button></div></header>
         <div className="page-wrap">
           {page === 'home' && <HomePage progress={progress} level={level} levelName={levelNames[level - 1]} topicsDone={topicsDone} badges={earnedBadges.length} navigate={navigate} />}
           {page === 'learn' && <LearnPage progress={progress} onComplete={completeTopic} />}
